@@ -1,0 +1,13 @@
+---
+
+hap_ubuntu_apt_packages:
+  - "libavahi-compat-libdnssd-dev"
+
+hap_npm_packages:
+  - "python-shell"
+
+hap_user: "pi"
+hap_restart_sec: 10
+hap_src: "https://github.com/KhaosT/HAP-NodeJS/archive/master.zip"
+hap_home: "/home/{{hap_user}}/"
+hap_dest: "{{hap_home}}/HAP-NodeJS-master"

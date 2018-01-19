@@ -1,0 +1,21 @@
+---
+
+- name: setup wifi
+  become: yes
+  template:
+    src: "wpa_supplicant.conf.j2"
+    dest: "/etc/wpa_supplicant/wpa_supplicant.conf"
+    mode: 0644
+
+- name: update apt package cache
+  become: yes
+  apt: upgrade="dist" update_cache="yes" cache_valid_time="3600"
+
+- name: install extra apt packages
+  become: yes
+  apt: name="{{item}}"
+  with_items: "{{ubuntu_base_apt_packages}}"
+
+- name: authorize admin ssh keys
+  become: yes
+  authorized_key: "user=pi key=https://github.com/{{github_user}}.keys"

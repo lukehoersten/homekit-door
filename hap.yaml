@@ -1,0 +1,8 @@
+---
+
+- hosts: raspberrypi
+  roles:
+    - base
+    # - automationhat
+    - hap-nodejs
+    - homebridge

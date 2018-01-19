@@ -1,0 +1,38 @@
+---
+
+# https://github.com/nfarina/homebridge/wiki/Running-HomeBridge-on-a-Raspberry-Pi
+
+- name: download and unarchive nodejs
+  become: yes
+  unarchive:
+    src: "https://nodejs.org/dist/v{{nodejs_version}}/{{nodejs_dir}}.tar.xz"
+    dest: "/opt/"
+    remote_src: yes
+    creates: "/opt/{{nodejs_dir}}"
+
+# sudo update-alternatives --install "/usr/bin/node" "node" "/opt/node/bin/node" 1
+- name: update node alterantives
+  become: yes
+  alternatives:
+    link: "/usr/bin/{{item}}"
+    name: "{{item}}"
+    path: "/opt/{{nodejs_dir}}/bin/{{item}}"
+    priority: "1"
+  with_items:
+    - "node"
+    - "npm"
+
+- name: npm install global deps
+  become: yes
+  npm: name="{{item}}" global="yes"
+  with_items:
+    - "npm"
+    - "node-gyp"
+
+- name: update node-gyp alterantives
+  become: yes
+  alternatives:
+    link: "/usr/bin/node-gyp"
+    name: "node-gyp"
+    path: "/opt/{{nodejs_dir}}/bin/node-gyp"
+    priority: "1"

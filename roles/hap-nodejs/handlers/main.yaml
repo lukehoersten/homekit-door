@@ -1,0 +1,5 @@
+---
+
+- name: restart hap-nodejs service
+  systemd: name="hap-nodejs" state="restarted" daemon_reload="yes"
+  become: yes

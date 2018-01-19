@@ -1,0 +1,45 @@
+---
+
+- name: install homekit apt packages
+  become: yes
+  apt: name="{{item}}"
+  with_items: "{{hap_ubuntu_apt_packages}}"
+
+- name: download and unarchive HAP-NodeJS
+  unarchive: src="{{hap_src}}" dest="{{hap_home}}" remote_src="yes" creates="{{hap_dest}}"
+
+- name: install npm packages
+  npm: name="{{item}}" path="{{hap_dest}}"
+  with_items: "{{hap_npm_packages}}"
+
+- name: clean up accessory examples
+  file: path="{{hap_dest}}/accessories" state="absent"
+
+- name: create accessories dir
+  file: path="{{hap_dest}}/accessories" state="directory"
+
+- name: create python dir
+  file: path="{{hap_dest}}/python" state="directory"
+
+- name: install doord.py
+  copy: src="doord.py" dest="{{hap_dest}}/python/doord.py"
+  notify: restart hap-nodejs service
+
+- name: install door accessory
+  copy: src="Door_accessory.js" dest="{{hap_dest}}/accessories/Door_accessory.js"
+  notify: restart hap-nodejs service
+
+- name: build HAP-NodeJS
+  command: "npm install"
+  args:
+    chdir: "{{hap_dest}}"
+  changed_when: false
+
+- name: configure systemd service
+  become: yes
+  template: src="hap-nodejs.service.j2" dest="/lib/systemd/system/hap-nodejs.service"
+  notify: restart hap-nodejs service
+
+- name: ensure hap-nodejs is started
+  become: yes
+  systemd: name="hap-nodejs.service" enabled="yes" state="started"

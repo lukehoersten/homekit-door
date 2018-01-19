@@ -1,0 +1,13 @@
+---
+
+- name: download automationhat install script
+  get_url:
+    url: "https://get.pimoroni.com/automationhat"
+    dest: "/tmp/automationhat.sh"
+    mode: 0750
+
+- name: install automationhat
+  shell: "/tmp/automationhat.sh"
+  args:
+    chdir: "/tmp"
+    executable: "/bin/bash"
