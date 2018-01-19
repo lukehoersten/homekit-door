@@ -58,9 +58,9 @@ door.on('identify', function(paired, callback) {
 });
 
 door.addService(Service.Doorbell, 'Doorbell');
-door.addService(Service.CameraRTPStreamManagement, 'Psudo-Camera');
-door.addService(Service.Speaker, 'Psudo-Speaker');
-door.addService(Service.Microphone, 'Psudo-Microphone');
+door.addService(Service.CameraRTPStreamManagement, 'Pseudo-Camera');
+door.addService(Service.Speaker, 'Pseudo-Speaker');
+door.addService(Service.Microphone, 'Pseudo-Microphone');
 
 door.addService(Service.LockMechanism, 'Door')
     .setCharacteristic(Characteristic.LockTargetState, Characteristic.LockTargetState.SECURED) // force initial state
