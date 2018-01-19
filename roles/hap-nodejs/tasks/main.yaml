@@ -22,11 +22,11 @@
   file: path="{{hap_dest}}/python" state="directory"
 
 - name: install doord.py
-  copy: src="doord.py" dest="{{hap_dest}}/python/doord.py"
+  copy: src="../../../src/doord.py" dest="{{hap_dest}}/python/doord.py"
   notify: restart hap-nodejs service
 
 - name: install door accessory
-  copy: src="Door_accessory.js" dest="{{hap_dest}}/accessories/Door_accessory.js"
+  copy: src="../../../src/Door_accessory.js" dest="{{hap_dest}}/accessories/Door_accessory.js"
   notify: restart hap-nodejs service
 
 - name: build HAP-NodeJS
