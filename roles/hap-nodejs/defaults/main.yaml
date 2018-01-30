@@ -6,8 +6,8 @@ hap_ubuntu_apt_packages:
 hap_npm_packages:
   - "python-shell"
 
-hap_user: "pi"
+hap_user: "hap-nodejs"
 hap_restart_sec: 10
+hap_dir: "/home/{{hap_user}}"
 hap_src: "https://github.com/KhaosT/HAP-NodeJS/archive/master.zip"
-hap_home: "/home/{{hap_user}}/"
-hap_dest: "{{hap_home}}/HAP-NodeJS-master"
+hap_dest: "{{hap_dir}}/HAP-NodeJS-master"
