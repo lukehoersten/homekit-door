@@ -1,5 +1,14 @@
 ---
 
+- name: turn swap off
+  become: yes
+  command: "swapoff -a"
+  changed_when: false
+
+- name: remove swap apt package
+  become: yes
+  apt: state="absent" name="dphys-swapfile"
+
 - name: setup wifi
   become: yes
   template:
@@ -18,4 +27,4 @@
 
 - name: authorize admin ssh keys
   become: yes
-  authorized_key: "user=pi key=https://github.com/{{github_user}}.keys"
+  authorized_key: user="pi" key="https://github.com/{{github_user}}.keys"
