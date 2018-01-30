@@ -1,0 +1,12 @@
+---
+
+automationhat_apt_packages:
+  - "python3"
+  - "raspi-gpio"
+  - "python3-rpi.gpio"
+  - "python3-smbus"
+  - "python3-sn3218"
+
+automationhat_modules:
+  - "i2c-bcm2708"
+  - "i2c-dev"

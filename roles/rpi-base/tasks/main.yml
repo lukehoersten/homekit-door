@@ -23,7 +23,7 @@
 - name: install extra apt packages
   become: yes
   apt: name="{{item}}"
-  with_items: "{{ubuntu_base_apt_packages}}"
+  with_items: "{{rpi_base_apt_packages}}"
 
 - name: authorize admin ssh keys
   become: yes

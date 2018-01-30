@@ -36,6 +36,7 @@
 - name: clean up accessory examples
   become: yes
   file: path="{{hap_dest}}/accessories" state="absent"
+  changed_when: false
 
 - name: create accessories dir
   become: yes
@@ -44,6 +45,17 @@
     state: "directory"
     owner: "{{hap_user}}"
     group: "{{hap_user}}"
+  changed_when: false
+
+- name: install door accessory
+  become: yes
+  copy:
+    src: "../../../src/Door_accessory.js"
+    dest: "{{hap_dest}}/accessories/Door_accessory.js"
+    owner: "{{hap_user}}"
+    group: "{{hap_user}}"
+  notify: restart hap-nodejs service
+  changed_when: false
 
 - name: create python dir
   become: yes
@@ -61,15 +73,6 @@
     owner: "{{hap_user}}"
     group: "{{hap_user}}"
     mode: "0755"
-  notify: restart hap-nodejs service
-
-- name: install door accessory
-  become: yes
-  copy:
-    src: "../../../src/Door_accessory.js"
-    dest: "{{hap_dest}}/accessories/Door_accessory.js"
-    owner: "{{hap_user}}"
-    group: "{{hap_user}}"
   notify: restart hap-nodejs service
 
 - name: build HAP-NodeJS

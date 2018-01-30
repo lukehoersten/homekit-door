@@ -1,13 +1,37 @@
 ---
 
-- name: download automationhat install script
-  get_url:
-    url: "https://get.pimoroni.com/automationhat"
-    dest: "/tmp/automationhat.sh"
-    mode: 0750
+# Based on https://get.pimoroni.com/automationhat script
 
-- name: install automationhat
-  shell: "/tmp/automationhat.sh"
-  args:
-    chdir: "/tmp"
-    executable: "/bin/bash"
+- name: install automationhat apt packages
+  become: yes
+  apt: name="{{item}}"
+  with_items: "{{automationhat_apt_packages}}"
+
+- name: configure i2c boot config
+  become: yes
+  lineinfile:
+    path: "/boot/config.txt"
+    line: "dtparam=i2c_arm=on"
+    insertafter: "^#dtparam=i2c_arm=on"
+
+- name: configure i2c kernel modules
+  become: yes
+  lineinfile:
+    path: "/etc/modules"
+    line: "{{item}}"
+  with_items: "{{automationhat_modules}}"
+
+- name: modprobe kernel modules
+  become: yes
+  modprobe: name="{{item}}"
+  with_items: "{{automationhat_modules}}"
+
+- name: dtparam i2c
+  become: yes
+  command: "dtparam i2c_arm=on"
+  changed_when: false
+
+- name: enable i2c with raspi-config
+  become: yes
+  command: "raspi-config nonint do_i2c 0"
+  changed_when: false
