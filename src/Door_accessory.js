@@ -41,10 +41,10 @@ var DOOR = {
         this.pyshell.on('message', function (message) {
             console.log(message);
             switch(message) {
-            case 'doorbell_on':
+            case 'doorbell on':
                 doorbellOnCallback();
                 break;
-            case 'doorbell_off':
+            case 'doorbell off':
                 doorbellOffCallback();
                 break;
             }
