@@ -30,10 +30,7 @@
   notify: restart hap-nodejs service
 
 - name: build HAP-NodeJS
-  command: "npm install"
-  args:
-    chdir: "{{hap_dest}}"
-  changed_when: false
+  npm: path="{{hap_dest}}"
 
 - name: configure systemd service
   become: yes
