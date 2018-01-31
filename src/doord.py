@@ -40,10 +40,10 @@ def run_command(command_queue):
 
 def read_doorbell(thread_local):
     analog_value = automationhat.analog.one.read()
-    doorbell_on_state = 5.9 < analog_value and analog_value < 6.5
+    doorbell_on_state = 6.0 < analog_value and analog_value <= 6.22
 
-    if doorbell_on_state:
-        print("doorbell analog value: {}".format(analog_value))
+    if analog_value < 7.59:
+        print("doorbell analog value: {}; ringing: {}; ring range: (6.0, 6.22]".format(analog_value, doorbell_on_state))
 
     if doorbell_on_state != thread_local.doorbell_on_state:
         thread_local.doorbell_on_state = doorbell_on_state
