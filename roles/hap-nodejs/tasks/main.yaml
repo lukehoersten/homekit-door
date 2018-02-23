@@ -18,6 +18,7 @@
     - "libavahi-compat-libdnssd-dev"
     - "nodejs-legacy"
     - "npm"
+  notify: restart hap-nodejs service
 
 - name: download and unarchive HAP-NodeJS
   become: yes
@@ -29,14 +30,12 @@
     creates: "{{hap_dest}}"
     owner: "{{hap_user}}"
     group: "{{hap_user}}"
+  notify: restart hap-nodejs service
 
-# global?
-- name: install npm packages
+- name: install python-shell npm packages
   become: yes
-  become_user: "{{hap_user}}"
-  npm: name="{{item}}" path="{{hap_dest}}"
-  with_items:
-    - "python-shell"
+  npm: name="python-shell" global="yes"
+  notify: restart hap-nodejs service
 
 - name: clean up accessory examples
   become: yes
