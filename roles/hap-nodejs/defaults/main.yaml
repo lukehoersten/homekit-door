@@ -1,11 +1,5 @@
 ---
 
-hap_ubuntu_apt_packages:
-  - "libavahi-compat-libdnssd-dev"
-
-hap_npm_packages:
-  - "python-shell"
-
 hap_user: "hap-nodejs"
 hap_restart_sec: 10
 hap_dir: "/home/{{hap_user}}"
