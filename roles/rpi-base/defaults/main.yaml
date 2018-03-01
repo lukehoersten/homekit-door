@@ -2,6 +2,5 @@
 
 rpi_base_apt_packages:
   - "emacs-nox"
-  - "python3"
   - "htop"
   - "jq"

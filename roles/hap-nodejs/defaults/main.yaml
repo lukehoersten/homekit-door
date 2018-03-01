@@ -1,7 +1,23 @@
 ---
 
+hap_apt_packages:
+    - "python3"
+    - "libavahi-compat-libdnssd-dev"
+    - "nodejs-legacy"
+    - "npm"
+
 hap_user: "hap-nodejs"
 hap_restart_sec: 10
 hap_dir: "/home/{{hap_user}}"
 hap_src: "https://github.com/KhaosT/HAP-NodeJS/archive/master.zip"
 hap_dest: "{{hap_dir}}/HAP-NodeJS-master"
+
+hap_example_accessories:
+  - "AirConditioner_accessory.js"
+  - "Fan_accessory.js"
+  - "GarageDoorOpener_accessory.js"
+  - "Light_accessory.js"
+  - "Lock_accessory.js"
+  - "MotionSensor_accessory.js"
+  - "Outlet_accessory.js"
+  - "TemperatureSensor_accessory.js"
