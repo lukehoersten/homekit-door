@@ -3,5 +3,4 @@
 - hosts: raspberrypi
   roles:
     - rpi-base
-    - automationhat
-    - hap-nodejs
+    - hap-door
