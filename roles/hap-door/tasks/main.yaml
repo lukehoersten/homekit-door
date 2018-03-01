@@ -1,0 +1,38 @@
+---
+
+- name: install python3 apt packages
+  become: yes
+  apt: name="python3"
+  notify: restart hap-nodejs service
+
+- name: install python-shell npm packages
+  become: yes
+  npm: name="python-shell" global="yes"
+  notify: restart hap-nodejs service
+
+- name: install door accessory
+  become: yes
+  copy:
+    src: "../../../src/Door_accessory.js"
+    dest: "{{hap_dest}}/accessories/Door_accessory.js"
+    owner: "{{hap_user}}"
+    group: "{{hap_user}}"
+  notify: restart hap-nodejs service
+
+- name: create python dir
+  become: yes
+  file:
+    path: "{{hap_dest}}/python"
+    state: "directory"
+    owner: "{{hap_user}}"
+    group: "{{hap_user}}"
+
+- name: install doord.py
+  become: yes
+  copy:
+    src: "../../../src/doord.py"
+    dest: "{{hap_dest}}/python/doord.py"
+    owner: "{{hap_user}}"
+    group: "{{hap_user}}"
+    mode: "0755"
+  notify: restart hap-nodejs service
