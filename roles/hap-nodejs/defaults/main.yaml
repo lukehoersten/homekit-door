@@ -2,7 +2,7 @@
 
 hap_apt_packages:
     - "libavahi-compat-libdnssd-dev"
-    - "nodejs-legacy"
+    - "nodejs"
     - "npm"
 
 hap_user: "hap-nodejs"
