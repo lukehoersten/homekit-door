@@ -4,3 +4,5 @@ rpi_base_apt_packages:
   - "emacs-nox"
   - "htop"
   - "jq"
+
+rpi_enable_wifi: true
