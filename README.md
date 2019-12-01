@@ -24,4 +24,4 @@ an [Ansible](https://ansible.com/) playbook.
 
 ## Run Ansible
 
-`ansible-playbook hap.yaml`
+`ansible-playbook rpi-door.yaml`
