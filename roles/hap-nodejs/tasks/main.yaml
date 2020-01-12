@@ -13,8 +13,7 @@
 
 - name: install homekit apt packages
   become: yes
-  apt: name="{{item}}"
-  with_items: "{{hap_apt_packages}}"
+  apt: name="{{hap_apt_packages}}"
   notify: restart hap-nodejs service
 
 - name: download and unarchive HAP-NodeJS

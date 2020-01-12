@@ -4,8 +4,7 @@
 
 - name: install automationhat apt packages
   become: yes
-  apt: name="{{item}}"
-  with_items: "{{automationhat_apt_packages}}"
+  apt: name="{{automationhat_apt_packages}}"
 
 - name: configure i2c boot config
   become: yes
