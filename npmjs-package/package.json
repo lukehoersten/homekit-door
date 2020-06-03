@@ -1,0 +1,16 @@
+{
+    "name": "hap-door",
+    "version": "1.0.0",
+    "description": "A circuit-based door lock and door bell intercom for HomeKit.",
+    "main": "src/door.js",
+    "author": "Luke Hoersten <luke@hoersten.org>",
+    "license": "BSD-3",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/lukehoersten/homekit-door.git"
+    },
+    "dependencies": {
+        "hap-nodejs": "latest",
+        "python-shell": "latest"
+    }
+}

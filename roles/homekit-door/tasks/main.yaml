@@ -1,0 +1,41 @@
+---
+
+- name: create homekit-door user
+  become: yes
+  user:
+    name: "{{homekit_door_user}}"
+    comment: "HomeKit Door"
+    groups: "spi,i2c,gpio"
+    shell: "/bin/false"
+    move_home: yes
+  notify: restart homekit-door service
+
+- name: install homekit-door apt packages
+  become: yes
+  apt: name="{{homekit_door_apt_packages}}"
+  notify: restart homekit-door service
+
+- name: install homekit-door application dir
+  become: yes
+  copy:
+    src: "../../../npmjs-package/"
+    dest: "{{homekit_door_dir}}/"
+    owner: "{{homekit_door_user}}"
+    group: "{{homekit_door_user}}"
+    mode: "0755"
+  notify: restart homekit-door service
+
+- name: build homekit-door
+  become: yes
+  become_user: "{{homekit_door_user}}"
+  npm: path="{{homekit_door_dir}}"
+  notify: restart homekit-door service
+
+- name: configure systemd service
+  become: yes
+  template: src="homekit-door.service.j2" dest="/lib/systemd/system/homekit-door.service"
+  notify: restart homekit-door service
+
+- name: ensure homekit-door is started
+  become: yes
+  systemd: name="homekit-door.service" enabled="yes" state="started"

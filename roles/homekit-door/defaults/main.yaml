@@ -1,0 +1,10 @@
+---
+
+homekit_door_apt_packages:
+  - "python3"
+  - "nodejs"
+  - "npm"
+
+homekit_door_user: "homekit-door"
+homekit_door_dir: "/home/{{homekit_door_user}}/homekit-door"
+homekit_door_restart_sec: 10

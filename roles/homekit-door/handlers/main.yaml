@@ -1,0 +1,5 @@
+---
+
+- name: restart homekit-door service
+  systemd: name="homekit-door.service" state="restarted" daemon_reload="yes"
+  become: yes

@@ -1,27 +1,13 @@
-# Raspberry Pi Homekit Door Accessory
+# Raspberry Pi Homekit Door Lock Buzzer Accessory
 
-Using
-a
-[Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/) and
-[Pimoroni Automation pHAT](https://shop.pimoroni.com/products/automation-phat),
-make a simple circuit-based door lock and door bell intercom into a
-Siri-controlled HomeKit smart accessory. Siri integration is provided
-by [HAP-NodeJS](https://github.com/KhaosT/HAP-NodeJS).
+Using a [Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/)
+and [Pimoroni Automation pHAT](https://shop.pimoroni.com/products/automation-phat), make a simple circuit-based door
+lock and doorbell intercom into a Siri-controlled HomeKit smart accessory. Siri integration is provided
+by [HAP-NodeJS](https://github.com/homebridge/HAP-NodeJS). This package itself does not depend on Homebridge.
 
 ## Installation
 
-Installation is rather involved and handled by
-an [Ansible](https://ansible.com/) playbook.
+Installation can be handled by:
 
-## Ansible Inventory
-
-`inventory/host_vars/raspberrypi.local.yaml`
-
-    github_user: "<github user>"
-    wpa_networks:
-      - ssid: "<your ssid>"
-        psk: "<your wifi password>"
-
-## Run Ansible
-
-`ansible-playbook rpi-door.yaml`
+1. The [Ansible](https://ansible.com/) `homekit-door` role provided in the `roles` directory or
+2. By copying the `npmjs-package` to the Raspberry Pi and running `npm install`.

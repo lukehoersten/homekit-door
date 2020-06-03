@@ -1,6 +1,0 @@
----
-
-- hosts: raspberrypi
-  roles:
-    - rpi-base
-    - hap-door

@@ -1,0 +1,16 @@
+# {{ansible_managed}}
+
+[Unit]
+Description=HomeKit Door
+
+[Service]
+User={{homekit_door_user}}
+Group={{homekit_door_user}}
+Restart=always
+RestartSec={{homekit_door_restart_sec}}
+
+WorkingDirectory={{homekit_door_dir}}
+ExecStart=/usr/bin/node {{homekit_door_dir}}/src/door.js
+
+[Install]
+WantedBy=default.target
