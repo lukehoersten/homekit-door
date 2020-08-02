@@ -1,6 +1,6 @@
 # Raspberry Pi Homekit Door Lock Buzzer Accessory
 
-https://src.nth.io/homekit-door/
+https://src.nth.io/homekit-door/file
 
 Using a [Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/)
 and [Pimoroni Automation pHAT](https://shop.pimoroni.com/products/automation-phat), make a simple circuit-based door
